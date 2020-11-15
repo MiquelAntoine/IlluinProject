@@ -72,7 +72,10 @@ def predict_question_context_tfidf(
 
 def test_tfidf(json_path, tf_function="binary", topn=1, end_importance=True):
 
-    print("Testing tfidf method")
+    print("Testing tfidf method with arguments :")
+    print("tf_function = ", tf_function)
+    print("topn = ", topn)
+    print("end_importance = ", str(end_importance))
     print("Extract raw data from", json_path)
     contexts_df, questions_df = get_dataframe_from_json_path(json_path)
 
