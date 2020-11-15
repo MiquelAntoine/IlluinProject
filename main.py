@@ -14,7 +14,7 @@ if __name__ == "__main__":
     parser.add_argument(
         "--topn", help="The number of contexts given in prediciton", type=int
     )
-    parser.add_argument("--no_ei", help="deactivate the option end_importance")
+    parser.add_argument("--ei", help="deactivate the option end_importance")
 
     parser.add_argument(
         "--ofn",
@@ -32,8 +32,8 @@ if __name__ == "__main__":
         topn = args.topn
 
     end_importance = True
-    if args.no_ei:
-        end_importance = False
+    if args.ei:
+        end_importance = args.ei == "True"
 
     if model_name == "tf_idf":
         questions_df, contexts_df = models.test_tfidf(

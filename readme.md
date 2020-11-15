@@ -34,6 +34,10 @@ Then a windows should appear : tick 'all' and install. Then the code should run 
 
 If you encounter issues see the following tutorial [nltk.org/data.html](https://www.nltk.org/data.html)
 
+
+# Test
+In order to run the test you need pytest package and run from the root folder "python -m pytest"
+
 # Some Result
 The best combination of paramerters is the defaults ones ie : tf_func = 'binary'\
 end_importance = True
