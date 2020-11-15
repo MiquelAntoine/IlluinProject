@@ -16,6 +16,21 @@ Optional : \
 --topn n : the number of context predicted by the model (default 5)
 --no_ei : disable the 'end_importance' option on the computation of the tf_idf model. This option allows a greater weight for last words of the question
 
+# Requirements
+
+The requirement are in the requirement.txt. 
+They can be simply installed with the following command" pip install -r requirements.txt"
+
+# NLTK Data installation
+But due to data needed from nltk you might need to manually install it with the following commands :\
+python \
+import nltk
+nltk.dowload()
+
+Then a windows should appears : tick 'all' and install. Then the code should run propely
+
+If you encounter issues see the following tutorial [nltk.org/data.html](https://www.nltk.org/data.html)
+
 # Some Result
 The best combination of paramerters is the defaults ones ie : tf_func = 'binary'\
 end_importance = True
