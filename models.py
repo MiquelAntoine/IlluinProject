@@ -115,4 +115,4 @@ def test_tfidf(json_path, tf_function="binary", topn=1, end_importance=True):
             accuracy += 1
 
     print("Accurracy : ", accuracy / len(questions_df))
-    return accuracy / len(questions_df)
+    return questions_df, contexts_df

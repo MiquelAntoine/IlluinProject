@@ -10,11 +10,14 @@ Mandatory : \
 --fp filepath   : the filepath of the json dataset\
 --mdl modelname : the model chosen, can only be 'tf_idf'
 
-Optional : \
+Optional : 
+
 --tffunc tf_function: the function used of the term frequency computation , can be 'binary' (default), 'log' or 'raw_frequency'. 
 
 --topn n : the number of context predicted by the model (default 5)
---no_ei : disable the 'end_importance' option on the computation of the tf_idf model. This option allows a greater weight for last words of the question
+--no_ei : disable the 'end_importance' option on the computation of the tf_idf model. This option allows a greater weight for last words of the question.
+
+--ofn output_filename : root name for the dumps of the questions_df and contexts_df DataFrames into json. Thoses dumps will be found in the folder 'dumps'.
 
 # Requirements
 
@@ -27,7 +30,7 @@ python \
 import nltk
 nltk.dowload()
 
-Then a windows should appears : tick 'all' and install. Then the code should run propely
+Then a windows should appear : tick 'all' and install. Then the code should run propely
 
 If you encounter issues see the following tutorial [nltk.org/data.html](https://www.nltk.org/data.html)
 

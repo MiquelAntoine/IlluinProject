@@ -42,6 +42,12 @@ def get_dataframe_from_json_path(json_path):
                     ]
                 )
 
+    contexts_df = contexts_df.reset_index()
+    contexts_df = contexts_df.drop(["index"], axis=1)
+
+    questions_df = questions_df.reset_index()
+    questions_df = questions_df.drop(["index"], axis=1)
+
     return contexts_df, questions_df
 
 
