@@ -47,7 +47,7 @@ def get_dataframe_from_json_path(json_path):
 
 def tokenize_text_dataframe(df, tokenizer, new_column_name, target_column_name):
     """
-    Add a in a new column the token list of the target column get by the tokenizer
+    Add in a new column the token list of the target column get by the tokenizer
     """
 
     def tokenize_lower(text):
@@ -56,30 +56,34 @@ def tokenize_text_dataframe(df, tokenizer, new_column_name, target_column_name):
     df[new_column_name] = df[target_column_name].apply(tokenize_lower)
 
 
-def filter_token_dataframe(df, token_column_name):
+def filter_token_dataframe(df, new_column_name, target_column_name):
     """
-    Filter the tokens of the column given in argument
+    Add in a new column the filtered list of tokens of the target column
     """
 
     french_stopwords = set(stopwords.words("french"))
-    french_stopwords.add("quel")
-    french_stopwords.add("l'")
-    french_stopwords.add("c'")
-    french_stopwords.add("t'")
-    french_stopwords.add("d'")
-    french_stopwords.add("m'")
-    french_stopwords.add("n'")
-    french_stopwords.add("qu'")
-    french_stopwords.add("s'")
-    french_stopwords.add("j'")
-    french_stopwords.add(",")
-    french_stopwords.add(";")
-    french_stopwords.add("où")
-    french_stopwords.add("?")
-    french_stopwords.add("-")
-    french_stopwords.add(".")
+    french_stopwords.update(
+        [
+            "quel",
+            "l'",
+            "c'",
+            "t'",
+            "d'",
+            "m'",
+            "n'",
+            "qu'",
+            "s'",
+            "j'",
+            ",",
+            ";",
+            "où",
+            "?",
+            "-",
+            ".",
+        ]
+    )
 
     def remove_stop_words(tokens):
         return [token for token in tokens if not token in french_stopwords]
 
-    df[token_column_name] = df[token_column_name].apply(remove_stop_words)
+    df[new_column_name] = df[target_column_name].apply(remove_stop_words)
