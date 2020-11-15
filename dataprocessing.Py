@@ -1,8 +1,8 @@
 # This file is about the functions used to extrat the data from a raw json
 import json
 import pandas as pd
-from nltk import RegexpTokenizer
 from nltk.corpus import stopwords
+from nltk import FreqDist
 
 
 def get_dataframe_from_json_path(json_path):
@@ -11,7 +11,7 @@ def get_dataframe_from_json_path(json_path):
     -context_df : each line is a context with an id and the text of the context
     -questions_df : each line of this data is a question with an id, the text of the question and the context_id
     """
-    json_file = open("train.json", encoding="utf-8")
+    json_file = open(json_path, encoding="utf-8")
     data = json.loads(json_file.read())["data"]
 
     contexts_df = pd.DataFrame(columns=["id", "text"])
@@ -45,7 +45,7 @@ def get_dataframe_from_json_path(json_path):
     return contexts_df, questions_df
 
 
-def tokenize_text_dataframe(df, tokenizer, new_column_name, target_column_name):
+def add_tokenized_text_column(df, tokenizer, new_column_name, target_column_name):
     """
     Add in a new column the token list of the target column get by the tokenizer
     """
@@ -56,7 +56,7 @@ def tokenize_text_dataframe(df, tokenizer, new_column_name, target_column_name):
     df[new_column_name] = df[target_column_name].apply(tokenize_lower)
 
 
-def filter_token_dataframe(df, new_column_name, target_column_name):
+def add_filtered_token_column(df, new_column_name, target_column_name):
     """
     Add in a new column the filtered list of tokens of the target column
     """
@@ -87,3 +87,14 @@ def filter_token_dataframe(df, new_column_name, target_column_name):
         return [token for token in tokens if not token in french_stopwords]
 
     df[new_column_name] = df[target_column_name].apply(remove_stop_words)
+
+
+def add_tokens_freq_column(df, new_column_name, target_column_name):
+    """
+    Add the tokens freq column to the df
+    """
+
+    def get_freq_dict(list_tokens):
+        return dict(FreqDist(list_tokens))
+
+    df[new_column_name] = df[target_column_name].apply(get_freq_dict)
