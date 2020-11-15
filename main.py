@@ -1,5 +1,5 @@
 import argparse
-import models
+from package import models
 from pathlib import Path
 import pandas as pd
 
@@ -56,4 +56,4 @@ if __name__ == "__main__":
                 + "_contexts_df.json"
             )
 
-    print("progam ends")
+    print("program ends")

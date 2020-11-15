@@ -1,5 +1,5 @@
 # This file contains all the models function that can be applied to the raw questions_df and contexts_df
-from dataprocessing import (
+from .dataprocessing import (
     get_dataframe_from_json_path,
     add_tokenized_text_column,
     add_filtered_token_column,
